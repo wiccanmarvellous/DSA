@@ -3,11 +3,11 @@ using namespace std;
 
 class Solution
 {
-    public:
-    //Function to sort the array using bubble sort algorithm.
+public:
+    // Function to sort the array using bubble sort algorithm.
     void bubbleSort(int arr[], int n)
     {
-        for (int i = 0; i < n - 1; i++) 
+        for (int i = 0; i < n - 1; i++)
         {
             int flag = 1;
             for (int j = 0; j < n - 1 - i; j++)
@@ -23,7 +23,6 @@ class Solution
         }
     }
 };
-
 
 int main()
 {
