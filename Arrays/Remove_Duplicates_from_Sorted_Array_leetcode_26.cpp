@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Approach 1
 class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
@@ -9,6 +10,20 @@ public:
         for (auto it : s)
             nums.push_back(it);
         return s.size();
+    }
+};
+
+// Approach 2
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int i, j = 1, n = nums.size();
+        for (int i = 1; i < n; i++)
+            if (nums[i] != nums[i - 1]) {
+                nums[j] = nums[i];
+                j++;
+            }
+        return j;
     }
 };
 
