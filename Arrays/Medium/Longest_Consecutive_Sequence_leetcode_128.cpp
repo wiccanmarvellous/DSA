@@ -51,3 +51,24 @@ public:
         return max_len;
     }
 };
+
+// Optimal     TC O(n + 2n)      SC O(n)
+class Solution {
+public:
+    int longestConsecutive(vector<int>& nums) {
+        unordered_set<int> arr;
+        int len = 1, maxLen = 0;
+        for (auto it : nums)
+            arr.insert(it);
+        for (auto it : arr) {
+            if (arr.find(it - 1) == arr.end()) {
+                int x = it;
+                while (arr.find(x + 1) != arr.end())
+                    len++, x++;
+                maxLen = max(maxLen, len);
+                len = 1;
+            }
+        }
+        return maxLen;
+    }
+};
