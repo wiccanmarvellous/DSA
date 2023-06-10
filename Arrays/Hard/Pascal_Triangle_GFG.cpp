@@ -37,3 +37,40 @@ public:
         return ans;
     }
 };
+
+// working
+class Solution{
+public:
+    long long modInverse(long long a, long long m) {
+        long long m0 = m;
+        long long y = 0, x = 1;
+        if (m == 1)
+            return 0;
+        while (a > 1) {
+            long long q = a / m;
+            long long t = m;
+            m = a % m, a = t;
+            t = y;
+            y = x - q * y;
+            x = t;
+        }
+        if (x < 0)
+            x += m0;
+        return x;
+    }
+    vector<ll> nthRowOfPascalTriangle(int n) {
+        // code here
+        vector<ll>list;
+        ll int mod=1e9+7;
+        ll ans=1;
+        list.push_back(ans);
+        for(int col=1;col<n;col++)
+        {
+            ans=(ans*(n-col))%mod;
+            ans=(ans*modInverse(col,mod))%mod;
+            ans=ans%mod;
+            list.push_back(ans);
+        }
+        return list;
+    }
+};
