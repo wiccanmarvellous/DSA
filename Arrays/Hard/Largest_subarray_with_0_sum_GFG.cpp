@@ -21,8 +21,6 @@ class Solution{
 };
 
 // Optimal      TC O(n)     SC O(n)
-/*You are required to complete this function*/
-
 class Solution{
     public:
     int maxLen(vector<int>&A, int n)
