@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Brute        TC O(n * n * n)
 class Solution{
     public:
     int closest3Sum(int A[], int N, int X)
@@ -14,6 +15,44 @@ class Solution{
                         min = abs(sum - X);
                         ans = sum;
                     }
+                }
+            }
+        }
+        return ans;
+    }
+};
+
+// Optimal      TC O(n * n)
+class Solution{
+    public:
+    int closest3Sum(int A[], int N, int X)
+    {
+        int min = INT_MAX, ans = 0;
+        sort(A, A + N);
+        for (int i = 0; i < N; i++) {
+            if (i > 0 && A[i] == A[i - 1]) continue;
+            int j = i + 1;
+            int k = N - 1;
+            while (j < k) {
+                int sum = A[i] + A[j] + A[k];
+                if (sum == X) {
+                    return X;
+                }
+                else if (sum < X) {
+                    int diff = X  - sum;
+                    if (diff < min) {
+                        min = diff;
+                        ans = sum;
+                    }
+                    j++;
+                }
+                else {
+                    int diff = sum - X;
+                    if (diff < min) {
+                        min = diff;
+                        ans = sum;
+                    }
+                    k--;
                 }
             }
         }
