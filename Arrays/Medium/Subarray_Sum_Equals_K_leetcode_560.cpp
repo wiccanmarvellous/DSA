@@ -1,7 +1,26 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Brute        TC O(n * n)
+// Brute        TC O(n * n * n)
+class Solution {
+public:
+    int subarraySum(vector<int>& nums, int k) {
+        int count = 0;
+        for (int i = 0; i < nums.size(); i++) {
+            for (int j = i; j < nums.size(); j++) {
+            int sum = 0;
+                for (int l = i; l <= j; l++) {
+                    sum += nums[l];
+                }
+                if (sum == k)
+                        count++;
+            }
+        }
+        return count;
+    }
+};
+
+// Better       TC O(n * n)
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
@@ -18,7 +37,7 @@ public:
     }
 };
 
-// Optimal      TC O(n)
+// Optimal      TC O(n)     SC O(n)
 class Solution {
 public:
     int subarraySum(vector<int>& nums, int k) {
