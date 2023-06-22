@@ -20,3 +20,14 @@ class Solution {
         return false;
     }
 };
+
+class Solution {
+  public:
+    bool searchKey(int n, struct Node* head, int key) {
+        if (head == NULL)
+            return false;
+        else if (head->data == key)
+            return true;
+        return searchKey(n, head->next, key);
+    }
+};
