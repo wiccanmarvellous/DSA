@@ -8,6 +8,7 @@ struct ListNode
     ListNode(int x) : val(x), next(NULL) {}
 };
 
+// Brute        TC O(n)
 class Solution
 {
 public:
@@ -25,6 +26,16 @@ public:
     }
 };
 
+// Better       TC O(1)
+class Solution {
+public:
+    void deleteNode(ListNode* node) {
+        node->val = node->next->val;
+        node->next = node->next->next;
+    }
+};
+
+// Optimal      TC O(1)
 class Solution {
 public:
     void deleteNode(ListNode* node) {
