@@ -8,6 +8,7 @@ struct Node
     Node(int x) {  data = x;  next = NULL; }
 };
 
+// Iterative
 class Solution {
   public:
     bool searchKey(int n, struct Node* head, int key) {
@@ -21,6 +22,7 @@ class Solution {
     }
 };
 
+// Recursive
 class Solution {
   public:
     bool searchKey(int n, struct Node* head, int key) {
