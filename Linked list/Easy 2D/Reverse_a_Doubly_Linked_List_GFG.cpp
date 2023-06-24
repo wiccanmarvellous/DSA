@@ -15,6 +15,7 @@ struct Node
         
 };
 
+// using 3 pointers
 Node* reverseDLL(Node * head)
 {
     if (head->next == nullptr)
@@ -34,5 +35,28 @@ Node* reverseDLL(Node * head)
     t2->next = t1;
     t2->prev = nullptr;
     head = t2;
+    return head;
+}
+
+// using 2 pointers
+Node* reverseDLL(Node * head)
+{
+    if (head->next == nullptr)
+        return head;
+    Node *t1 = head;
+    Node *t2 = t1->next;
+    t1->next = nullptr;
+    t1->prev = t2;
+    t1 = t2;
+    t2 = t2->next;
+    while (t2 != nullptr) {
+        t1->next = t1->prev;
+        t1->prev = t2;
+        t1 = t2;
+        t2 = t2->next;
+    }
+    t1->next = t1->prev;
+    t1->prev = nullptr;
+    head = t1;
     return head;
 }
