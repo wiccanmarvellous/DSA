@@ -28,3 +28,17 @@ public:
         return head;
     }
 };
+
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *temp = nullptr;
+        while (head != nullptr) {
+            ListNode *next = head->next;
+            head->next = temp;
+            temp = head;
+            head = next;
+        }
+        return temp;
+    }
+};
