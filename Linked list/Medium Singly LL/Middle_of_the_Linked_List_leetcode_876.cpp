@@ -11,6 +11,7 @@ struct ListNode
 };
 
 // Brute        TC O(n)
+// Tortoise Method
 class Solution
 {
 public:
