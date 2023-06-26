@@ -8,6 +8,7 @@ struct ListNode
     ListNode(int x) : val(x), next(NULL) {}
 };
 
+// Brute    TC O(n)     SC O(n)
 class Solution
 {
 public:
@@ -26,6 +27,7 @@ public:
     }
 };
 
+// Optimal      TC O(n)     SC O(1)
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
