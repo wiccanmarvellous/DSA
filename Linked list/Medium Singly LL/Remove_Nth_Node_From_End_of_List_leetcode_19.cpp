@@ -10,7 +10,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
-
+// Brute        TC O(2n)        SC O(1)
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
@@ -32,6 +32,27 @@ public:
             temp->next = temp->next->next;
         else
             temp->next = nullptr;
+        return head;
+    }
+};
+
+// Optimal      TC O(n)     SC O(1)
+class Solution {
+public:
+    ListNode* removeNthFromEnd(ListNode* head, int n) {
+        ListNode *i = head, *j = head;
+        int m = 0;
+        while (m < n) {
+            m++;
+            j = j->next;
+        }
+        if (j == nullptr)
+            return head->next;
+        while (j->next != nullptr) {
+            i = i->next;
+            j = j->next;
+        }
+        i->next = i->next->next;
         return head;
     }
 };
