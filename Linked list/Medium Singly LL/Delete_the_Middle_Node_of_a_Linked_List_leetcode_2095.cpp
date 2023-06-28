@@ -9,6 +9,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// Brute        TC O(2n)    SC O(1)
 class Solution {
 public:
     ListNode* deleteMiddle(ListNode* head) {
@@ -31,6 +32,26 @@ public:
         }
         del_node = temp->next;
         temp->next = temp->next->next;
+        delete del_node;
+        return head;
+    }
+};
+
+// Optimal      TC O(n)     SC O(1)
+class Solution {
+public:
+    ListNode* deleteMiddle(ListNode* head) {
+        if (head->next == nullptr) {
+            delete head;
+            return nullptr;
+        }
+        ListNode *del_node = nullptr, *slow = head, *fast = head->next;
+        while (fast->next != nullptr && fast->next->next != nullptr) {
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        del_node = slow->next;
+        slow->next = slow->next->next;
         delete del_node;
         return head;
     }
