@@ -9,6 +9,31 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// Brute        TC O(n * n)     SC O(1)
+class Solution {
+public:
+    ListNode* sortList(ListNode* head) {
+        ListNode *i = head, *j = head;
+        while (i != nullptr) {
+            int m = INT_MAX;
+            ListNode *hold = nullptr;
+            j = i;
+            while (j != nullptr) {
+                if (m > j->val) {
+                    m = j->val;
+                    hold = j;
+                }
+                j = j->next;
+            }
+            hold->val = i->val;
+            i->val = m;
+            i = i->next;
+        }
+        return head;
+    }
+};
+
+// Better       TC O(n)     SC O(n)
 class Solution {
 public:
     ListNode* sortList(ListNode* head) {
