@@ -1,7 +1,32 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Brute        TC O(n)     SC O(n)
+// Brute        TC O(n * n / 2)     SC O(1)
+class Solution {
+public:
+    string reverseWords(string s) {
+        reverse(s.begin(), s.end());
+        string str = "", ans = "";
+        for (int i = 0; i < s.length(); i++) {
+            if (s[i] != ' ')
+                str += s[i];
+            else if (str != "") {
+                reverse(str.begin(), str.end());
+                ans += str + " ";
+                str = "";
+            }
+        }
+        if (str != "") {
+                reverse(str.begin(), str.end());
+                ans += str;
+        }
+        if (ans[ans.length() - 1] == ' ')
+            ans.resize(ans.length() - 1);
+        return ans;
+    }
+};
+
+//Better        TC O(n)     SC O(n)
 class Solution {
 public:
     string reverseWords(string s) {
@@ -25,27 +50,28 @@ public:
     }
 };
 
-// Optimal      TC O(n)     SC O(1)
+// Optimal      TC O(n)     SC(1)
 class Solution {
 public:
     string reverseWords(string s) {
-        reverse(s.begin(), s.end());
         string str = "", ans = "";
         for (int i = 0; i < s.length(); i++) {
             if (s[i] != ' ')
                 str += s[i];
             else if (str != "") {
-                reverse(str.begin(), str.end());
-                ans += str + " ";
+                if (ans != "")
+                    ans = str + " " + ans;
+                else
+                    ans = str;
                 str = "";
             }
         }
         if (str != "") {
-                reverse(str.begin(), str.end());
-                ans += str;
+            if (ans != "")
+                ans = str + " " + ans;
+            else
+                ans = str;
         }
-        if (ans[ans.length() - 1] == ' ')
-            ans.resize(ans.length() - 1);
         return ans;
     }
 };
