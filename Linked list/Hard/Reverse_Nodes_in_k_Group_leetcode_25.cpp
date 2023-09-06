@@ -9,6 +9,7 @@ struct ListNode {
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+// old
 class Solution {
 public:
     ListNode* reverseList(ListNode* head, ListNode*tail) {
@@ -53,6 +54,45 @@ public:
                 tail_next = tail->next;
         }
         prev->next = tail_next;
+        return head;
+    }
+};
+
+// new
+class Solution {
+public:
+    ListNode* reverseKGroup(ListNode* head, int k) {
+        ListNode *dummy = new ListNode(0, head);
+        ListNode *prevSub = dummy, *curr = head;
+        int flag = 0;
+        while (curr != NULL) {
+            ListNode *subHead = curr, *prev = NULL;
+            for (int i = 0; i < k; i++) {
+                if (curr == NULL) {
+                    curr = prev;
+                    prev = NULL;
+                    while (curr != NULL) {
+                        ListNode *nxt = curr->next;
+                        curr->next = prev;
+                        prev = curr;
+                        curr = nxt;
+                    }
+                    prevSub->next = prev;
+                    return head;
+                }
+                ListNode *nxt = curr->next;
+                curr->next = prev;
+                prev = curr;
+                curr = nxt;
+            }
+            if  (flag == 0) {
+                head = prev;
+                flag++;
+            }
+            prevSub->next = prev;
+            subHead->next = curr;
+            prevSub = subHead;
+        }
         return head;
     }
 };
