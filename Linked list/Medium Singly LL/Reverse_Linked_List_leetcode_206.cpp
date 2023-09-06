@@ -63,6 +63,21 @@ public:
     }
 };
 
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *prev = NULL;
+        ListNode *curr = head;
+        while (curr != NULL) {
+            ListNode *nxt = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = nxt;
+        }
+        return prev;
+    }
+};
+
 // Rcursive Approaches
 
 class Solution {
@@ -95,5 +110,22 @@ public:
         if (head == nullptr || head->next == nullptr)
             return head;
         return recursive(head, nullptr);
+    }
+};
+
+class Solution {
+public:
+    void reverse(ListNode* &head, ListNode* curr, ListNode* prev) {
+        if (curr == NULL) {
+            head = prev;
+            return;
+        }
+        reverse(head, curr->next, curr);
+        curr->next = prev;
+    }
+
+    ListNode* reverseList(ListNode* head) {
+        reverse(head, head, NULL);
+        return head;
     }
 };
