@@ -11,7 +11,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-//      TC O(n)     SC O(n)
+// iterative      TC O(n)     SC O(n)
 class Solution {
 public:
     vector<vector<int>> levelOrder(TreeNode* root) {
@@ -34,6 +34,26 @@ public:
             }
             ans.push_back(level);
         }
+        return ans;
+    }
+};
+
+// recursive        TC O(n)
+class Solution {
+public:
+    void helper(TreeNode* root, int idx, vector<vector<int>> &ans) {
+        if (root == NULL)
+            return;
+        if (ans.size() == idx)
+            ans.push_back({});
+        ans[idx].push_back(root->val);
+        helper(root->left, idx + 1, ans);
+        helper(root->right, idx + 1, ans);
+        return;
+    }
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> ans;
+        helper(root, 0, ans);
         return ans;
     }
 };
