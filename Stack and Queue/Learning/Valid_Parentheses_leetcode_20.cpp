@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-// Optimal      TC O(n)
+// Optimal      TC O(n)     SC O(n)
 class Solution {
 public:
     bool isValid(string s) {
