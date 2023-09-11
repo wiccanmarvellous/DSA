@@ -1,47 +1,20 @@
-#include <bits/stdc++.h>
-using namespace std;
 
-class MyQueue {
-public:
 
-    stack<int> s1, s2;
-    MyQueue() {
-        
-    }
-    
-    void push(int x) {
-        while (!s1.empty()) {
-            s2.push(s1.top());
-            s1.pop();
-        }
-        s2.push(x);
-        while (!s2.empty()) {
-            s1.push(s2.top());
-            s2.pop();
-        }
-    }
-    
-    int pop() {
-        int ans = s1.top();
-        s1.pop();
-        return ans;
-    }
-    
-    int peek() {
-        int i = s1.top();
-        return i;
-    }
-    
-    bool empty() {
-        return s1.empty();
-    }
-};
+//Function to push an integer into the stack.
+void MyStack ::push(int x) 
+{
+    StackNode *node = new StackNode(x);
+    if (top != NULL)
+        node->next = top;
+    top = node;
+}
 
-/**
- * Your MyQueue object will be instantiated and called as such:
- * MyQueue* obj = new MyQueue();
- * obj->push(x);
- * int param_2 = obj->pop();
- * int param_3 = obj->peek();
- * bool param_4 = obj->empty();
- */
+//Function to remove an item from top of the stack.
+int MyStack ::pop() 
+{
+    if (top == NULL)
+        return -1;
+    int ans = top->data;
+    top = top->next;
+    return ans;
+}
