@@ -35,3 +35,85 @@ public:
         return l3;
     }
 };
+
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode *dummy = new ListNode(-1);
+        ListNode *curr = dummy;
+        int carry = 0, val1 = 0, val2 = 0, sum = 0;
+        while (l1 || l2 || carry) {
+            if (l1) 
+                val1 = l1->val; 
+            else 
+                val1 = 0;
+            if (l2) 
+                val2 = l2->val; 
+            else 
+                val2 = 0;
+
+            sum = val1 + val2 + carry;
+            carry = sum / 10;
+            ListNode *newnode = new ListNode(sum % 10);
+            curr->next = newnode;
+            curr = newnode;
+
+            if (l1) 
+                l1 = l1->next; 
+            if (l2) 
+                l2 = l2->next; 
+        }
+        return dummy->next;
+    }
+};
+
+
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        if (l1 == NULL && l2 == NULL)
+            return NULL;
+        if (l1 == NULL)
+            return l2;
+        if (l2 == NULL)
+            return l1;
+
+        ListNode *curr1 = l1, *curr2 = l2, *ansHead = NULL, *ansCurr = NULL;
+        int carry = 0, sum = 0;
+        while (curr1 != NULL && curr2 != NULL) {
+            sum = curr1->val + curr2->val + carry;
+            carry = sum / 10;
+            ListNode *newnode = new ListNode(sum % 10);
+            if (ansHead == NULL)
+                ansHead = newnode;
+            else
+                ansCurr->next = newnode;
+            ansCurr = newnode;
+            curr1 = curr1->next;
+            curr2 = curr2->next;
+        }
+        while (curr1) {
+            sum = curr1->val + carry;
+            carry = sum / 10;
+            ListNode *newnode = new ListNode(sum % 10);
+            ansCurr->next = newnode;
+            ansCurr = newnode;
+            curr1 = curr1->next;
+        }
+        while (curr2) {
+            sum = curr2->val + carry;
+            carry = sum / 10;
+            ListNode *newnode = new ListNode(sum % 10);
+            ansCurr->next = newnode;
+            ansCurr = newnode;
+            curr2 = curr2->next;
+        }
+        
+        if (carry) {
+            ListNode *newnode = new ListNode(carry);
+            ansCurr->next = newnode;
+            ansCurr = newnode;
+        }
+        return ansHead;
+    }
+};
