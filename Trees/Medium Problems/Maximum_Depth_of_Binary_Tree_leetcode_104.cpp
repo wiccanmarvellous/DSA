@@ -11,6 +11,7 @@ struct TreeNode {
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// using Queue      TC O(n)
 class Solution {
 public:
     int maxDepth(TreeNode* root) {
