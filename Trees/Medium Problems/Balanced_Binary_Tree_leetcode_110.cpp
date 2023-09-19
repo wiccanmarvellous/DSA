@@ -26,3 +26,26 @@ public:
         return heightDiff(root) == -1 ? false : true;
     }
 };
+
+
+class Solution {
+public:
+    int helper(TreeNode* root) {
+        if (root == NULL)
+            return 0;
+        int l = helper(root->left);
+        int r = helper(root->right);
+        return max(l, r) + 1;
+    }
+    bool isBalanced(TreeNode* root) {
+        if (root == NULL)
+            return true;
+        int l = helper(root->left);
+        int r = helper(root->right);
+        if (abs(l - r) > 1)
+            return false;
+        else
+            return isBalanced(root->left) && isBalanced(root->right);
+        return true;
+    }
+};
