@@ -1,3 +1,4 @@
 *.exe
 temp.cpp
 temp.py
+.vscode
