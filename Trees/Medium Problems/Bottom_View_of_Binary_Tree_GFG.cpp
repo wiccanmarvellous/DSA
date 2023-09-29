@@ -8,6 +8,8 @@ struct Node
     Node* right;
 };
 
+//  TC O(n)     SC O(n)
+
 class Solution {
   public:
     vector <int> bottomView(Node *root) {
