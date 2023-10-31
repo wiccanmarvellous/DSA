@@ -1,6 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+//BFS       TC (O(n * n))       SC (O(n * n))
 class Solution 
 {
     public:
