@@ -35,7 +35,7 @@ class Solution {
     }
 };
 
-// BFS      TC (O(n + 2E) + O(n))    SC O(n)
+// DFS      TC (O(n + 2E) + O(n))    SC O(n)
 class Solution {
   private:
     bool dfs(vector<int> adj[], int vis[], int node, int parent) {
